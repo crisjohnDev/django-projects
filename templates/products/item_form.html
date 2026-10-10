@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Item Form</title>
+</head>
+<body>
+    <h1>{% if item %}Edit Item{% else %}Create Item{% endif %}</h1>
+
+    <!-- Custom Error Display (No built-in messages framework) -->
+    {% if error %}
+        <p style="color: red; font-weight: bold;">{{ error }}</p>
+    {% endif %}
+
+    <!-- Standard HTML Form -->
+    <form method="post">
+        {% csrf_token %}
+        
+        <p>
+            <label for="name">Name:</label><br>
+            <input type="text" id="name" name="name" value="{{ product.name }}">
+        </p>
+
+        <p>
+            <label for="description">Description:</label><br>
+            <textarea id="description" name="description">{{ product.description }}</textarea>
+        </p>
+
+        <button type="submit">Save</button>
+    </form>
+
+    <a href="{% url 'product_list' %}">Back to List</a>
+</body>
+</html>
